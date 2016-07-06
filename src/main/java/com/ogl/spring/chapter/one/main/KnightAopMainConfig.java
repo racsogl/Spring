@@ -10,7 +10,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 /**
  * Created by ogl on 26/06/16.
  *
- * See @{@link Configuration}
+ * @see Configuration
  *
  * {@link FileSystemXmlApplicationContext}
  */
