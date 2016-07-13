@@ -1,0 +1,13 @@
+AnnotationConfigApplicationContext: Carga un contexto de aplicación de Spring desde una o varias clases de
+configuración basadas en Java.
+
+AnnotationConfigWebApplicationContext: Carga un contexto de aplicación Web de Spring desde una o varias
+clases de configuración basadas en Java.
+
+ClassPathXmlApplicationContext: Carga una definición de contexto a partir de un archivo XML situado en la
+ruta de clases y trata los archivos de definición de contexto como recursos de ruta de clases.
+
+FileSystemXmlApplicationContext: Carga una definición de contexto desde un archivo XML en el sistema de archivos.
+
+XmlWebApplicationContext: Carga definiciones de contexto a partir de un archivo XML almacenado en una
+aplicación Web.
