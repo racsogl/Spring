@@ -1,6 +1,7 @@
 package com.ogl.spring.chapter.one.main;
 
 import com.ogl.spring.chapter.one.service.Knight;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

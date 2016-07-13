@@ -18,7 +18,20 @@ Ciclo de vida de un Bean:
 
 
 2 Spring inyecta valores y referencias de bean en las propiedades de éste.
-3 Si el Bean implementa BeanNameAware, Spring proporciona el ID del bean al método setBeanName()
+3 Si el Bean implementa BeanNameAware, Spring proporciona el ID del bean al método setBeanName().
+4 Si el Bean implementa BeanFactoryAware, Spring invoca el método setBeanFactory(), proporcionando
+el mismo la fábrica del Bean.
+5 Si el Bean implementa ApplicationContextAware, Spring invoca el método setApplicationContext(),
+proporcionándolo en una referencia al contexto de la aplicación contenedor.
+6 Si el bean implementa la interfaz BeanPostProcessor, Spring invoca su método postProcessBeforeInitialization()
+7 Si el bean implementa la interfaz InitailizingBean, Spring invoca su método afterPropertiesSet(). De forma
+similar, si el bean se ha declarado con un método init, se invoca el método de inicialización especificado.
+8 Si el bean implementa BeanPostProcessor. Spring invoca su método postProcessAfterInitialization().
+9 El bean esta listo para que la aplicación lo utilize y va a permanecer en el contexto de la aplicación hasta
+que se elimine.
+10 Si el bean implementa la interfaz DisposableBean, Spring invoca sus métodos destroy, se invoca al
+método especificado.
+
 
 
 
