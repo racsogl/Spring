@@ -1,0 +1,29 @@
+@Component le indica a Spring que debe crear un bean.
+@Component("lonelyHeartsClub") con identificador de bean
+Se puede descartar la anotación @Component y en su lugar, usar la anotación @Named de la especificación
+de dependencias de Java JSR-330 para proporcionar un ID de bean
+
+Debemos tener una clase anotada con
+@Configuration
+@ComponentScan por defecto analiza el mismo paquete de la clase de configuración
+en xml <context:component-scan base-package="com.ogl.spring.chapter.two.compacts">
+Se puede definir el paquete base para el análisis de componentes.
+@ComponentScan("com.ogl.spring.chapter")
+@ComponentScan(basePackages={"...", "...."})
+o a traves de clases
+@ComponentScan(basePackageClasses={SpringConfig.class, SpringConfig2.class})
+
+Se puede crear un interfaz de marcador vacía en los paquetes a examinar.
+
+
+Para indicar que se debe realizar la conexión automática se utiliza
+@Autowired
+@Autowired(required=false) Spring intenta la conexion automatica si fracasa no lanza excepción
+
+
+
+
+
+
+
+

@@ -13,3 +13,10 @@
     </bean>
 
 </beans>
+
+
+<!--<bean id="taxCalculator" class="org.spring.samples.TaxCalculator">-->
+<!--<property name="defaultLocale" value="#{ systemProperties['user.region'] }"/>-->
+
+<!--&lt;!&ndash; other properties &ndash;&gt;-->
+<!--</bean>-->
