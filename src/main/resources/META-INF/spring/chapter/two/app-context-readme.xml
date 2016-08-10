@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+    <bean id="compactDisc" class="com.ogl.spring.chapter.two.compacts.SgtPeppers"/>
+
+    <bean class="com.ogl.spring.chapter.two.players.CDPlayer" id="cdPlayer">
+        <constructor-arg ref="compactDisc"/>
+    </bean>
+
+    <!-- cd nombre del argumento del constructor -ref Inyección de una referencia de bean-->
+    <!--c:cd-ref="compactDisc"-->
+    <bean class="com.ogl.spring.chapter.two.players.CDPlayer" c:cd-ref="compactDisc"/>
+
+    <!--sustituimos el nombre del parametro por 0-->
+    <bean class="com.ogl.spring.chapter.two.players.CDPlayer" c:_0-ref="compactDisc"/>
+
+    <!--si solo tenemos un argumento de constructor no tenemos xq poner el 0-->
+    <bean class="scom.ogl.spring.chapter.two.players.CDPlayer" c:_-ref="compactDisc"/>
+
+    <!--si solo tenemos un argumento de constructor no tenemos xq poner el 0-->
+    <bean class="com.ogl.spring.chapter.two.players.CDPlayer" c:cadena-ref="compactDisc"/>
+
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
+        <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
+        <constructor-arg value="The Beatles"/>
+    </bean>
+
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
+          c:_title="Sgt. Peppers's Lonely Hearts Club Band"
+          c:_artist="The Beatles"/>
+
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
+          c:_0="Sgt. Peppers's Lonely Hearts Club Band"
+          c:_1="The Beatles"/>
+
+
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
+        <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
+        <constructor-arg value="The Beatles"/>
+        <constructor-arg>
+            <list>
+                <value>uno</value>
+                <value>dos</value>
+                <value>tres</value>
+                <value>cuatro</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- podemos conectar una lista de referencias en vez de value
+    por ejemplo si tuviesemos
+                    public Discography(String artist, List<CompactDisc> cds) {... }-->
+    <bean class="spring.compacts.BlankDisk" id="blankdisc">
+        <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
+        <constructor-arg value="The Beatles"/>
+    <constructor-arg>
+            <list>
+                <ref bean="sgtPeppers"/>
+                <ref bean="whiteAlbum"/>
+                <ref bean="..."/>
+                <ref bean="..."/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!--Lo mismo pero con Set-->
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
+        <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
+        <constructor-arg value="The Beatles"/>
+        <constructor-arg>
+            <set>
+                <value>uno</value>
+                <value>dos</value>
+                <value>tres</value>
+                <value>cuatro</value>
+            </set>
+        </constructor-arg>
+    </bean>
+
+    <!-- CONFIGURAR PROPIEDADES -->
+    <!-- Como regla general inyección de constructores para las dependencias básicas y la
+    de propiedades para las opcionales -->
+    <!--p:nombrePropiedad-ref="compactDisc"-->
+    <!---->
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
+        <property name="title" value="Sgt.. Peppers's Lonely Hearts Club Band" />
+
+        <property name="tracks" >
+            <list>
+                <value>.....</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
+          p:title="Sgt.. Peppers's Lonely Hearts Club Band">
+
+        <property name="tracks">
+            <list>
+                <value>.....</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--No se puede utilizar el espacio de nombres p para conectar una coleccion-->
+
+    <!--pero podemos utilizar el espacio de nombres util-->
+
+    <util:list id="trackList">
+        <value>ffff</value>
+        <value>ffff</value>
+        <value>ffff</value>
+        <value>ffff</value>
+    </util:list>
+
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
+          p:title="titulo"
+          p:artist="arti"
+          p:tracks-ref="trackList" />
+
+    <!--El espacio de nombres util contiene varios espacios de nombres-->
+
+    <util:constant/><!-- Hace referencia a un campo public static de un tipo y lo muestra como bean-->
+    <util:map></util:map> <!--Crea un Bean que es un Map de valores o referencias-->
+    <util:properties></util:properties> <!-- crea un Bean que es un java.util.Properties-->
+    <util:property-path/>  <!--Hace referencia a una propiedad de bean (o anidada) y la muestra com bean-->
+    <util:set></util:set> <!--Crea un bean que es un java.util.Set de valores o referencias-->
+
+    <!-- el comportamiento es como c con ref es la referencia a un bean -->
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
+        p:title="Sgt. Peppers's Lonely Hearts Club Band"
+        p:artist="The Beatles">
+        <constructor-arg>
+            <list>
+                <value>uno</value>
+                <value>dos</value>
+                <value>tres</value>
+                <value>cuatro</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
