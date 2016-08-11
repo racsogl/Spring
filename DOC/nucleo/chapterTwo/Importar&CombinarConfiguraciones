@@ -1,0 +1,52 @@
+Si tenemos varios ficheros de configuracion
+
+@Configuration
+public class CDPlayerConfig {
+
+    @Bean(name = "lonelyHeartsClub")
+    public CompactDisc sgtPeppers() {
+        return new SgtPeppers();
+    }
+......
+
+@Configuration
+@Import(CDPlayerConfig.class)
+public class CDPConfig {
+
+    @Bean(name = "lonelyHeartsClub")
+    public CompactDisc sgtPeppers() {
+        return new SgtPeppers();
+    }
+......
+
+
+MEJOR
+
+@Configuration
+@Import({CDPlayerConfig.class, CDPConfig.class})
+public class SoundSystemConfig {
+
+}
+
+
+Hacer referencia a XML desde JavaConfig
+@Configuration
+@Import({CDPlayerConfig.class, CDPConfig.class})
+@ImportResource("classpath:cd-config.xml")
+public class SoundSystemConfig {
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+En XML
+<import resource="cd-config.xml"/>
+<import resource="classpath:META-INF/spring/xxx.xml"/>
+
+Hacer referencia a JavaConfig desde XML
+
+<bean class="com.ogl.spring. . . .Config/>
+
+Scanear
+<context:component-scan>
+<context:component-scan base-package="com."/>

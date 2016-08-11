@@ -21,11 +21,13 @@
 
     <bean id="compactDisc" class="com.ogl.spring.chapter.two.compacts.SgtPeppers"/>
 
+    <!--Inicializar un bean con inyecciones de constructor-->
     <bean class="com.ogl.spring.chapter.two.players.CDPlayer" id="cdPlayer">
-        <constructor-arg ref="compactDisc"/>
+        <constructor-arg ref="compactDisc"/> <!-- + detallado con constructor -->
     </bean>
 
-    <!-- cd nombre del argumento del constructor -ref Inyección de una referencia de bean-->
+    <!-- cd nombre del argumento del constructor
+         -ref Inyección de una referencia de bean -->
     <!--c:cd-ref="compactDisc"-->
     <bean class="com.ogl.spring.chapter.two.players.CDPlayer" c:cd-ref="compactDisc"/>
 
@@ -35,10 +37,7 @@
     <!--si solo tenemos un argumento de constructor no tenemos xq poner el 0-->
     <bean class="scom.ogl.spring.chapter.two.players.CDPlayer" c:_-ref="compactDisc"/>
 
-    <!--si solo tenemos un argumento de constructor no tenemos xq poner el 0-->
-    <bean class="com.ogl.spring.chapter.two.players.CDPlayer" c:cadena-ref="compactDisc"/>
-
-    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
+    <bean id="blankdisc" class="com.ogl.spring.chapter.two.compacts.BlankDisc">
         <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
         <constructor-arg value="The Beatles"/>
     </bean>
@@ -51,6 +50,11 @@
           c:_0="Sgt. Peppers's Lonely Hearts Club Band"
           c:_1="The Beatles"/>
 
+    <!-- si solo tuviesemos un argumento de constructor -->
+    <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
+          c:_="Sgt. Peppers's Lonely Hearts Club Band"/>
+
+    <!-- Conectar colecciones a argumentos de constructo  el espacio de nombres c NO PUEDE!!! -->
 
     <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
         <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
@@ -94,17 +98,26 @@
             </set>
         </constructor-arg>
     </bean>
+    <!--FIN Inicializar un bean con inyecciones de constructor-->
 
-    <!-- CONFIGURAR PROPIEDADES -->
-    <!-- Como regla general inyección de constructores para las dependencias básicas y la
-    de propiedades para las opcionales -->
+    <!-- Configurar Propiedades -->
+
+    <!-- Como regla general inyección de constructores para las dependencias básicas y la de propiedades para las opcionales -->
+    <bean id="cdPlayer" class="com.ogl.spring.chapter.two.players.CDPlayer">
+        <property name="cd" ref="compactDisc" />
+    </bean>
+
     <!--p:nombrePropiedad-ref="compactDisc"-->
-    <!---->
+    <bean id="cdPlayer" class="com.ogl.spring.chapter.two.players.CDPlayer"
+        p:cd-ref="compactDisc" />
+
     <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc">
         <property name="title" value="Sgt.. Peppers's Lonely Hearts Club Band" />
 
         <property name="tracks" >
             <list>
+                <value>.....</value>
+                <value>.....</value>
                 <value>.....</value>
             </list>
         </property>
@@ -120,9 +133,8 @@
         </property>
     </bean>
 
-    <!--No se puede utilizar el espacio de nombres p para conectar una coleccion-->
-
-    <!--pero podemos utilizar el espacio de nombres util-->
+    <!-- No se puede utilizar el espacio de nombres p para conectar una coleccion-->
+    <!-- Pero podemos utilizar el espacio de nombres util-->
 
     <util:list id="trackList">
         <value>ffff</value>
@@ -138,13 +150,14 @@
 
     <!--El espacio de nombres util contiene varios espacios de nombres-->
 
-    <util:constant/><!-- Hace referencia a un campo public static de un tipo y lo muestra como bean-->
+    <util:constant/><!-- Hace referencia a un campo public static de un tipo y lo muestra como bean
+    http://howtodoinjava.com/spring/spring-core/spring-declare-beans-from-final-static-field-references-using-util-constant/-->
+
     <util:map></util:map> <!--Crea un Bean que es un Map de valores o referencias-->
     <util:properties></util:properties> <!-- crea un Bean que es un java.util.Properties-->
     <util:property-path/>  <!--Hace referencia a una propiedad de bean (o anidada) y la muestra com bean-->
     <util:set></util:set> <!--Crea un bean que es un java.util.Set de valores o referencias-->
 
-    <!-- el comportamiento es como c con ref es la referencia a un bean -->
     <bean class="com.ogl.spring.chapter.two.compacts.BlankDisc" id="blankdisc"
         p:title="Sgt. Peppers's Lonely Hearts Club Band"
         p:artist="The Beatles">
