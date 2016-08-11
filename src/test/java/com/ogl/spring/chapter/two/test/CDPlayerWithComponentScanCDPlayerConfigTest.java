@@ -1,7 +1,9 @@
 package com.ogl.spring.chapter.two.test;
 
+import com.ogl.spring.chapter.two.compacts.BlankDisc;
 import com.ogl.spring.chapter.two.config.CDPlayerConfig;
 import com.ogl.spring.chapter.two.config.SpringConfig;
+import com.ogl.spring.chapter.two.players.CDPlayer;
 import com.ogl.spring.chapter.two.soundsystem.CompactDisc;
 import com.ogl.spring.chapter.two.soundsystem.MediaPlayer;
 import org.junit.Rule;
@@ -15,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by ogl on 14/07/16.
@@ -30,18 +33,18 @@ public class CDPlayerWithComponentScanCDPlayerConfigTest {
     @Qualifier("mediaPlayerBlankDisc")
     private MediaPlayer mediaPlayer;
 
-//    @Autowired
-//    @Qualifier("blankDisc")
-//    private CompactDisc compactDisc;
-//
-//    @Test
-//    public void cdShouldNotBeNull() {
-//        assertNotNull("should not be null", compactDisc);
-//    }l
+    @Autowired
+    @Qualifier("blankDisc")
+    private CompactDisc compactDisc;
+
+    @Test
+    public void cdShouldNotBeNull() {
+        assertNotNull("should not be null", compactDisc);
+    }
 
     @Test
     public void playMediaPlayer() {
         mediaPlayer.play();
-        assertEquals("Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles\n", systemOutRule.getLog());
+        assertTrue("should be instanceof BlankDisc", ((CDPlayer) mediaPlayer).getCd() instanceof BlankDisc);
     }
 }

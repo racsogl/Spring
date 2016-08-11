@@ -21,7 +21,7 @@ public class CDPlayerConfig {
 
     @Bean(name = "blankDisc")
     public CompactDisc blankDisc() {
-        return new BlankDisc();
+        return new BlankDisc("Title", "Artist");
     }
 
 //    public CompactDisc randomBeatlesCD() {
