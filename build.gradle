@@ -14,10 +14,11 @@ dependencies {
 
     compile "org.springframework:spring-context:$spring"
 
-    compile "org.springframework:spring-context:$spring"
-
     compile "org.springframework:spring-aop:$spring"
     compile "org.springframework:spring-aspects:$spring"
+
+    compile "org.springframework:spring-jdbc:$spring"
+    compile "com.h2database:h2:$h2Version"
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
