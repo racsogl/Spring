@@ -1,0 +1,7 @@
+Bean(destroyMethod = "close")
+DataSource dataSource(Environment environment) {
+    Class<Driver> driverClassName = environment.getPropertyAsClass(
+            "spring.datasource.driverClassName", Driver.class);
+    this.pool.setDriverClassName(driverClassName.getName());
+
+

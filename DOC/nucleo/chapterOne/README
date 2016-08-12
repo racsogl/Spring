@@ -1,4 +1,4 @@
-Bean y aspectos en archivos de configuración basados en XML.
++Bean y aspectos en archivos de configuración basados en XML.
 
 En una aplicación Spring, los objetos se crean, se conectan y residen dentro de un contenedor Spring.
 

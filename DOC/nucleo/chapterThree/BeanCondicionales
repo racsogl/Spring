@@ -1,0 +1,34 @@
+- Configurar un @Bean dependiendo de una condición:
+Si existe una libreria disponible en la ruta de clases de la aplicación o crear un bean siempre que se
+declare otro concreto o que exista una variable de entorno o .....
+
+@Conditional que se aplica a métodos de @Bean.
+
+La clase proporcionada a @Conditional puede ser de cualquier tipo que implemente la interfaz Condition.
+En el que solo debemos implementar el método matches.
+
+El método matches recibe ConditionContext y AnnotatedTypeMetadata para tomar una decisión.
+
+ConditionContext es una interfaz que nos permite.
+
+Comprobar definiciones de bean a través de BeanDefinitionRegistry, devuelto por getRegistry()
+Comprobar la presencia de uno o varios bean e incluso examinar sus propiedades a través de ConfigurableListableBeanFactory
+devuelto por getBeanFactory()
+Comprobar la presencia de valores y variables de entorno a través del entorno recuperado desde getEnvironment()
+Leer y examinar el contenido de recursos cargados a través de ResourceLoader, devuelto por getResourceLoader()
+Cargar y comprobar la presencia de clases a través de ClassLoader, devuelto por getClassLoader()
+
+
+AnnotatedTypeMetadata
+Es una interfaz que permite inspeccionar anotaciones que también se pueden haber incluido en el método @Bean
+con el método isAnnotated() se puede comprobar si el método @Bean está anotado con un tipo de anotación
+concreto.
+De los otros métodos se puede comprobar los atributos de la anotación aplicada al método @Bean
+
+A partir de Spring4 la anotación @Profile se ha refactorizado para basarla en @Conditional y la interfaz
+@Condition
+
+ver Profile y ProfileCondition
+
+
+

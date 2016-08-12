@@ -1,0 +1,68 @@
+En Spring 3.1 se puede utilizar la anotación @Profile a nivel de clases.
+Desde Spring 3.2 a nivel de métodos junto a la anotación @Bean.
+
+Los bean sin un perfil se crean igualmente, independientemente del perfil activo.
+
+Se puede utilicar @Profile a nivel de clases y metodos
+
+Se pueden definir a nivel XML
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+O
+
+a nivel de bean
+
+<beans profile="dev">
+    <bean ...
+</beans>
+
+<beans profile="prod">
+    <bean ...
+</beans>
+
+
+Activar perfiles
+
+Disponemos de dos propiedades
+- spring.profiles.active
+- spring.profiles.default
+
+Si se establece active su valor determina que perfiles estan activos en caso contrario se fija en los default.
+Si no se establece ninguno no habra perfiles activos y solo se crean los beans que no tengan perfil.
+
+Se puede establecer las propiedades de varias formas
+- Como parametros de inicialización DispatcherServlet
+- Como parametros de Contexto de una aplicación
+- Como entradas JNDI
+- Como variables de entorno
+- Como propiedades del sistema JVM
+- Con la anotación @ActiveProfiles en un clase de pruebas de integración
+
+-- Default web.xml --
+- Establecemos perfil determinado para el contexto.
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>dev</param-value>
+    </context-param>
+
+- Establecemos perfil determinado para el servlet.
+    <servlet>
+        <servlet-name>Servlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>spring.profiles.default</param-name>
+            <param-value>default</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+En produccion se puede cambiar a activar con propiedades del sistema, variables de entorno o JNDI
+Los profile active tienen preferencia
+
+Se pueden activar varios perfiles a la vez, separados por comas
+
+Si se establece spring.profiles.active, es irrelevante lo que se haya establecido en
+spring.profiles.default    active tiene preferencia

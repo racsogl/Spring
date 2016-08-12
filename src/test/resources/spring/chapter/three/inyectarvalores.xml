@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+    <context:property-placeholder properties-ref="configProperties"/>
+
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location">
+            <value>/config/three.properties</value>
+        </property>
+    </bean>
+
+    <!--properties-ref="propRef"-->
+    <!--<util:properties id="propRef" location="resolution"/>-->
+
+    <!--<bean id="resolution" class="org.springframework.core.io.FileSystemResource">-->
+        <!--<constructor-arg name="path" value="classpath*:/config/three.properties"/>-->
+    <!--</bean>-->
+
+    <bean id="inyectarValores" class="com.ogl.spring.chapter.three.inyectarvalores.Valores">
+        <property name="title" value="${disc.title}"/>
+        <property name="artist" value="${disc.artist}"/>
+    </bean>
+
+
+</beans>

@@ -1,0 +1,64 @@
+- Singleton: Instancia del bean para toda la aplicación - Predeterminado
+
+- Protoype: Se crea una instancia de bean cada vez que se inyecta o se recupera del contexto de aplicación de Spring
+
+- Session: En una app Web, se crea una instancia del bean por cada sesión. Por ejemplo Bean que respresenta
+el carro de compra
+@Component
+@Scope(
+    value="WebApplicationContext.SCOPE_SESSION,
+    proxyMode="ScopedProxyMode.INTERFACES)
+public interfaz ShoppingCart { // Bean de session
+
+}
+
+
+
+@Component
+public class StoreService { // Bean de instancia
+    @Autowired
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+}
+
+StoreService en un Bean de instancia única, se creará en el contexto de la aplicación al cargarse Spring.
+Mientra se crea intenta inyectar ShoppingCart, pero como es un Bean con ambito de session, todavía no existe
+y no habra instancia hasta que un usuario cree una session.
+
+Entonces se inyecta un proxy que mostrara los mismos métodos y cuando StoreService invoca a esos métodos el proxy
+delega la invocación al verdadero Bean ShoppingCart con ámbito de session.
+
+El atributo proxyMode esta establecido en INTERFACES, que indica que el proxy de implementar la interfaz ShoppingCart
+y delegar el bean en la implementación.
+Si ShoppingCart fuese una clase se tendria que utlizar CGLib para generar un proxy basado en clases y establecer
+el proxyMode a ScopedProxyMode.TARGET_CLASS.
+
+ESTOS PASA TAMBIEN EN EL AMBITO DE REQUEST
+
+- Request: Instancia por petición
+
+Para seleccionar tipos alternativos
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+
+O
+
+@Scope("prototype")
+
+- a nivel clase
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+
+- a nivel de Bean
+@Bean
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+
+- XML
+<bean id=".." class="" scope="prototype"/>
+
+<bean id="..." class="" scope="session">
+    <aop:scoped-proxy />   De forma predeterminada utiliza CGLib si queremos que sea de interfaz
+</bean>
+<bean id="..." class="" scope="session">
+    <aop:scoped-proxy proxy-target-class="false" />
+</bean>

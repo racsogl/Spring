@@ -1,0 +1,97 @@
+- Se puede designar un bean como principal
+@Primary
+A nivel de clase
+o a nivel de declaración de @Bean
+
+en xml
+<bean id="" class="" primary="true"/>
+
+
+- Si se ponen dos bean como principales utilizamos @Qualifier para especificar el bean que se va a inyectar
+
+@Autowired
+@Qualifier("iceCream")
+
+Puede ocasionar problemas al refactorizar y cambiar el nombre de la clase
+
+- Crear calificadores personalizados
+
+@Component
+@Qualifier("cold")
+public class IceCream implements Dessert { ... }
+
+@Autowired
+@Qualifier("cold")
+public void setDessert(Dessert dessert) {
+    this.dessert = dessert;
+}
+
+Se puede utilizar a nivel de declaracion de Bean
+
+@Bean
+@Qualifier("cold")
+public Dessert iceCream() {
+    return new IceCream();
+}
+
+- Pero seguiran produciendose errores si se tiene varios Bean que compartan rasgos comunes
+
+@Component
+@Qualifier("cold")
+public class IceCream implements Dessert { ... }
+
+@Component
+@Qualifier("cold")
+public class Popsicle implements Dessert { ... }
+
+Solución añadir otro @Qualifier en la declaración del componente y en el punto de inyección
+
+@Component
+@Qualifier("cold")
+@Qualifier("fruity")
+public class Popsicle implements Dessert { ... }
+
+Problema:
+Java no permite la repetición de varias anotaciones del mismo tipo en el mismo elemento.
+Java 8 permite siempre que se anoten con @Repeteable. Incluso en ese caso la anotación @Qualifier de Spring
+no se anota con @Repeteable
+
+Pero podemos crear anotaciones de calificador personalizadas
+
+@Target({ElementType.CONSTRUCTOR, ElementType.FIELD,
+ElementType.METHOD, ElementType.Type})
+@Retention(RetentionPolicy.RUNTIME)
+@Qualifier
+public @interface Cold {
+
+}
+
+@Target({ElementType.CONSTRUCTOR, ElementType.FIELD,
+ElementType.METHOD, ElementType.Type})
+@Retention(RetentionPolicy.RUNTIME)
+@Qualifier
+public @interface Creamy {
+
+}
+
+Con esto ya podemos
+@Component
+@Cold
+@Creamy
+public class IceCream implements Dessert {
+
+}
+
+@Autowired
+@Cold
+@Creamy
+public void setDessert(Dessert dessert) {
+    this....... ;
+}
+
+Para una anotacion condicional personalizada se hace una nueva anotación y se anota con @Conditional
+y para crear una anotación de calificador personalizada se realiza la nueva anotación y se anota con @Qualifier
+
+
+
+
