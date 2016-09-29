@@ -40,6 +40,6 @@ public class CDPlayerWithComponentScanSpringConfigTest {
     @Test
     public void play() {
         mediaPlayer.play();
-        assertEquals("Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles\r\n", systemOutRule.getLog());
+        assertEquals("Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles\n", systemOutRule.getLog());
     }
 }
