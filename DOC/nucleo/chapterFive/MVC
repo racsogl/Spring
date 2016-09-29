@@ -1,0 +1,14 @@
+Solicitud -> DispatcherServlet(Servlet Controlador Frontal)
+La tarea del Dispatcher es enviar la solicitud a un controlador de spring MVC que procesa la solicitud
+DispatcherServlet elige que controlador utilizar, prestando especial atención a la URL que transporta la
+solicitud a la hora de determinar la decisión de a que controlador soltar la información enviada por el usuario
+y esperar mientras la procesa el controlador que empaqueta los datos del modelo, identifica el nombre de la
+vista que debe generar el resultado y se lo devuelve al DispatcherServlet.
+
+A continuación DispatcherServlet va a consultar a un solucionador de vistas para asignar el nombre de la
+vista lógica a una implementación de vista especifica.
+
+Su ultima parada en la implementación de la vista a la cual entrega los datos del modelo que la vista utiliza para
+generar el resultado.
+
+
