@@ -4,11 +4,11 @@
 
 <beans>
 
-    <bean id="knight" class="com.ogl.spring.chapter.one.service.BraveKnight">
+    <bean id="knight" class="com.ogl.spring.one.service.BraveKnight">
         <constructor-arg ref="quest" />
     </bean>
 
-    <bean id="quest" class="com.ogl.spring.chapter.one.service.SlayDragonQuest">
+    <bean id="quest" class="com.ogl.spring.one.service.SlayDragonQuest">
         <constructor-arg value="#{T(System).out}" />
     </bean>
 
