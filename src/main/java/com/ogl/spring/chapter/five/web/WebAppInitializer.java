@@ -1,7 +1,12 @@
 package com.ogl.spring.chapter.five.web;
 
 import com.ogl.spring.chapter.five.config.RootConfig;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 /**
  * Solo funciona en un servidor compatible con Servlet 3.0
@@ -14,6 +19,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  *
  */
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[] { RootConfig.class };
@@ -33,5 +39,18 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     protected String[] getServletMappings() {
         return new String[] { "/" };
+    }
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        super.onStartup(servletContext);
+        servletContext.setInitParameter("spring.profiles.default", "local");
+    }
+
+    @Override
+    protected WebApplicationContext createRootApplicationContext() {
+        WebApplicationContext context = super.createRootApplicationContext();
+        ((ConfigurableEnvironment)context.getEnvironment()).setActiveProfiles("dev");
+        return context;
     }
 }

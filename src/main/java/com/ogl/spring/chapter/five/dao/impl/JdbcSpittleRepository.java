@@ -2,30 +2,61 @@ package com.ogl.spring.chapter.five.dao.impl;
 
 import com.ogl.spring.chapter.five.dao.SpittleRepository;
 import com.ogl.spring.chapter.five.entity.Spittle;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.LinkedList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
 public class JdbcSpittleRepository implements SpittleRepository {
 
+    private JdbcOperations jdbc;
+
+    @Autowired
+    public JdbcSpittleRepository(JdbcOperations jdbc) {
+        this.jdbc = jdbc;
+    }
+
     @Override
     public List<Spittle> findSpittles(long max, int count) {
-        List<Spittle> result = new LinkedList<>();
-
-        for (int i = 0; i < count; i++) {
-            result.add(i, new Spittle("Spittle".concat(String.valueOf(i)), new Date()));
-        }
-
-        return result;
+        return jdbc.query(
+                "select id, message, created_at, latitude, longitude" +
+                        " from Spittle" +
+                        " where id < ?" +
+                        " order by created_at desc limit 20",
+                new SpittleRowMapper(), max);
 
     }
 
     @Override
     public Spittle findById(Long id) {
         return null;
+    }
+
+    @Override
+    public void save(Spittle spittle) {
+        jdbc.update(
+                "insert into Spittle (message, created_at, latitude, longitude)" +
+                        " values (?, ?, ?, ?)",
+                spittle.getMessage(),
+                spittle.getTime(),
+                spittle.getLatitude(),
+                spittle.getLongitude());
+
+    }
+
+    private static class SpittleRowMapper implements RowMapper<Spittle> {
+        public Spittle mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new Spittle(
+                    rs.getLong("id"),
+                    rs.getString("message"),
+                    rs.getDate("created_at"),
+                    rs.getDouble("longitude"),
+                    rs.getDouble("latitude"));
+        }
     }
 }

@@ -15,4 +15,6 @@ public interface SpittleRepository {
     List<Spittle> findSpittles(long max, int count);
 
     Spittle findById(Long id);
+
+    void save(Spittle spittle);
 }

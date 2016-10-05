@@ -2,19 +2,45 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<html>
+<!DOCTYPE html>
   <head>
     <title>Spitter</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/style.css" />" >
-  </head>
+
+    <script>
+        var x = document.getElementById("geo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(savePosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function savePosition(position) {
+        //alert(position.coords.latitude);
+            document.getElementById("latitude").value = position.coords.latitude;
+            document.getElementById("longitude").value = position.coords.longitude;
+        }
+
+        function enviar() {
+            getLocation();
+
+            document.getElementById("spittleForm").submit();
+        }
+     </script>
+
+ </head>
   <body>
+    <p id="geo"></p>
     <div class="spittleForm">
       <h1>Spit it out...</h1>
-      <form method="POST" name="spittleForm">
-        <input type="hidden" name="latitude">
-        <input type="hidden" name="longitude">
+      <form method="POST" id="spittleForm">
+        <input type="hidden" name="latitude" id="latitude" value="">
+        <input type="hidden" name="longitude" id="longitude" value="">
         <textarea name="message" cols="80" rows="5"></textarea><br/>
-        <input type="submit" value="Add" />
+        <input type="button" value="Add" onclick="enviar()"/>
       </form>
     </div>
     <div class="listTitle">
@@ -36,5 +62,8 @@
         <a href="${more_url}">Show more</a>
       </c:if>
     </div>
+
+
+
   </body>
 </html>

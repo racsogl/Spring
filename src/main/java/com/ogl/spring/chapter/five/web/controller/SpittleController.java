@@ -2,6 +2,7 @@ package com.ogl.spring.chapter.five.web.controller;
 
 import com.ogl.spring.chapter.five.dao.SpittleRepository;
 import com.ogl.spring.chapter.five.entity.Spittle;
+import com.ogl.spring.chapter.five.web.form.SpittleForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,11 +76,11 @@ public class SpittleController {
         return "param/spittle";
     }
 
-//  @RequestMapping(method= RequestMethod.POST)
-//  public String saveSpittle(SpittleForm form, Model model) throws Exception {
-//    spittleRepository.save(new Spittle(null, form.getMessage(), new Date(),
-//        form.getLongitude(), form.getLatitude()));
-//    return "redirect:/spittles";
-//  }
+  @RequestMapping(method= RequestMethod.POST)
+  public String saveSpittle(SpittleForm form, Model model) throws Exception {
+    spittleRepository.save(new Spittle(null, form.getMessage(), new Date(),
+        form.getLongitude(), form.getLatitude()));
+    return "redirect:/spittles";
+  }
 
 }
