@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="minstrel" class="com.ogl.spring.chapter.one.aop.Minstrel">
+    <bean id="minstrel" class="com.ogl.spring.one.aop.Minstrel">
         <constructor-arg value="#{T(System).out}"/>
     </bean>
 
