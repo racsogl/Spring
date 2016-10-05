@@ -22,7 +22,7 @@
         <!--<constructor-arg name="path" value="classpath*:/config/tecnicasavanzadasconexion.properties"/>-->
     <!--</bean>-->
 
-    <bean id="inyectarValores" class="com.ogl.spring.chapter.tecnicasavanzadasconexion.inyectarvalores.Valores">
+    <bean id="inyectarValores" class="com.ogl.spring.tecnicasavanzadasconexion.inyectarvalores.Valores">
         <property name="title" value="${disc.title}"/>
         <property name="artist" value="${disc.artist}"/>
     </bean>
