@@ -30,7 +30,6 @@ public class DataConfig {
                 .build();
     }
 
-
     @Bean
     public JdbcOperations jdbcTemplate(DataSource dataSource) {
         return new JdbcTemplate(dataSource);

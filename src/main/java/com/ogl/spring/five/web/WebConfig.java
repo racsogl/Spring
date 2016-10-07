@@ -1,5 +1,6 @@
 package com.ogl.spring.five.web;
 
+import com.ogl.spring.five.web.controller.HomeController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,11 +9,14 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.ogl.spring.chapter.five.web")
+@ComponentScan("com.ogl.spring.five.web")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     // Solucionador de vista
