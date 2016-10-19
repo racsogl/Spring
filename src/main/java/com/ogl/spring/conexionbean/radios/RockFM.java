@@ -1,6 +1,6 @@
-package com.ogl.spring.two.radios;
+package com.ogl.spring.conexionbean.radios;
 
-import com.ogl.spring.two.soundsystem.Radio;
+import com.ogl.spring.conexionbean.soundsystem.Radio;
 import org.springframework.stereotype.Component;
 
 /**

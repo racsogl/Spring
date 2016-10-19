@@ -1,6 +1,6 @@
 package com.ogl.spring.tecnicasavanzadasconexion.inyectarvalores;
 
-import com.ogl.spring.two.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

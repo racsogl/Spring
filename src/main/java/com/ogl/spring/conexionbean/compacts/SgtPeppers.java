@@ -1,6 +1,6 @@
-package com.ogl.spring.two.compacts;
+package com.ogl.spring.conexionbean.compacts;
 
-import com.ogl.spring.two.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
 import org.springframework.stereotype.Component;
 
 /**
@@ -19,6 +19,16 @@ public class SgtPeppers implements CompactDisc {
     @Override
     public void play() {
         System.out.println("Playing " + title + " by " + artist);
+    }
+
+    @Override
+    public void playTrack(int i) {
+
+    }
+
+    @Override
+    public String getTittle() {
+        return title;
     }
 
 }

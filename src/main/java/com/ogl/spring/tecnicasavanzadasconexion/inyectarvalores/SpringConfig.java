@@ -1,6 +1,6 @@
 package com.ogl.spring.tecnicasavanzadasconexion.inyectarvalores;
 
-import com.ogl.spring.two.compacts.BlankDisc;
+import com.ogl.spring.conexionbean.compacts.BlankDisc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

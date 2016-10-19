@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @Import(DataConfig.class)
-@ComponentScan(basePackages = {"com.ogl.spring.chapter.five"},
+@ComponentScan(basePackages = {"com.ogl.spring.five"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)
         })

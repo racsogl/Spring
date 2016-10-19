@@ -1,0 +1,71 @@
+Ayuda a modularizar las preocupaciones transversales,
+que son funcionalidades que afectan a varios puntos de la aplicacion.
+
+Ejemplo: Seguridad, Transacciones, Inicio de sesion, etc..
+
+Los aspectos se definen en terminos de consejos, puntos de corte y puntos de cruce.
+
+- Consejo:  El proposito de un aspecto se denomina consejo.
+            Definen el que y el cuando de un aspecto.
+            En Spring hay 5 tipos de consejos:
+            - Antes del que el metodo se invoque
+            - Despues de que finalize el metodo con independencia del resultado
+            - Despues de que el metodo se complete con exito
+            - Despues de que el metodo gener un error
+            - Alrededor el consejo lo encapsula el metodo y proporciona funcionalidad antes y despues
+
+- Puntos de cruce: Es el punto de ejecucion de la aplicacion donde se puede conectar un aspecto.
+                   Puede ser un metodo, un error, un campo que se esta modificando.
+
+- Puntos de corte: Define el donde.
+                   Compara uno o + puntos de cruce en los que debe incluirse el consejo.
+                   A menudo, se especifican utilizando nombres de métodos y clases explícitos o mediante
+                   expresiones regulares que definen clases coincidentes y patrones del nombre del método.
+                   Algunos marcos de trabajo AOP permiten crear puntos de corte dinámicos que determinan
+                   si los consejos se aplican en función de decisiones en tiempo de ejecución como, por
+                   ejemplo, el valor de parámetros de métodos.
+
+
+- Un aspecto combina los consejos y los puntos de corte, define qué hacer, dónde hacerlo y cuándo debe hacerse.
+- Una introducción permite añadir nuevos métodos o atributos a las clases existentes.
+- Entrelazado es el proceso de aplicar aspectos a un objeto destino para crear un nuevo objeto proxy. Los aspectos
+  se entrelazan en el objeto destino en los puntos de cruce especificados..
+  El entrelazado puede tener lugar en diferentes puntos a lo largo de la vida útil del objeto de destino:
+
+   Tiempo de compilación: AspectJ
+   Tiempo de carga de clases: AspectJ 5
+   Tiempo de ejecución: Los aspectos se entrelazan durante la ejecución de la aplicación. Se genera un objeto
+   proxy que se va a delegar al objeto destino mientras se entrelaza con los aspectos. AOP Spring
+
+
+Concepto clave es que los puntos de corte definen que puntos de cruce aconsejan.
+
+
+Expresiones de AspectJ para definir aspectos en Spring
+
+- args() Limita las coincidencias del punto de cruce a la ejecución de aquellos métodos cuyos argumentos
+son instancias de los tipos dados.
+
+- @args() Limita las coincidencias de puntos de cruce a la ejecución de aquellos métodos cuyos argumentos
+se anotan con los tipos de anotacion proporcionados.
+
+- execution() Hace coincidir los puntos de cruce que son ejecuciones de método.
+
+- this() Limita las coincidencias de puntos de cruce a aquellas en las que la referencia del bean del proxy
+AOP es de un tipo determinado.
+
+- target() Limita las coincidencias de puntos de cruce a aquellas en las que el objeto de destino es de un tipo\
+determinado
+
+- @target() Limita la coincidencia de los puntos de cruce cuando la clase de un objeto en ejecución cuenta con una
+anotación del tipo dado.
+
+- within() Limita la coincidencia a los puntos de cruce de ciertos tipos.
+
+- @within() Limita la coincidencia a los puntos de cruce dentro de ciertos tipos que cuenten con al anotación
+ dada(la ejecución de métodos declarados en tipos con al anotración dada al utilizar AOP de Spring).
+
+- @annotation Limita las coincidencias de puntos de cruce a aquellos en los que el asunto del punto de cruce cuenta
+con la anotacion dada.
+
+@see Performance

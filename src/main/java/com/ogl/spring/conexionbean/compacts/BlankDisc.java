@@ -1,8 +1,7 @@
-package com.ogl.spring.two.compacts;
+package com.ogl.spring.conexionbean.compacts;
 
-import com.ogl.spring.two.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
 import org.springframework.stereotype.Component;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +39,11 @@ public class BlankDisc implements CompactDisc {
         }
     }
 
+    @Override
+    public void playTrack(int i) {
+        System.out.println("-Track: " + tracks.get(i));
+    }
+
     public String getTittle() {
         return tittle;
     }
@@ -58,7 +62,7 @@ public class BlankDisc implements CompactDisc {
 
     public List<String> getTracks() {
         if (tracks == null) {
-            tracks =  new ArrayList<>(0);
+            tracks = new ArrayList<>(0);
         }
         return tracks;
     }
@@ -66,4 +70,6 @@ public class BlankDisc implements CompactDisc {
     public void setTracks(List<String> tracks) {
         this.tracks = tracks;
     }
+
+
 }

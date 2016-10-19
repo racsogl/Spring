@@ -1,10 +1,10 @@
 package com.ogl.spring.two.test;
 
-import com.ogl.spring.two.compacts.BlankDisc;
-import com.ogl.spring.two.config.CDPlayerConfig;
-import com.ogl.spring.two.players.CDPlayer;
-import com.ogl.spring.two.soundsystem.CompactDisc;
-import com.ogl.spring.two.soundsystem.MediaPlayer;
+import com.ogl.spring.conexionbean.compacts.BlankDisc;
+import com.ogl.spring.conexionbean.config.CDPlayerConfig;
+import com.ogl.spring.conexionbean.players.CDPlayer;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.soundsystem.MediaPlayer;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
