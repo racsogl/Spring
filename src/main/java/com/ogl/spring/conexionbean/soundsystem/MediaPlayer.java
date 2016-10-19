@@ -1,4 +1,4 @@
-package com.ogl.spring.two.soundsystem;
+package com.ogl.spring.conexionbean.soundsystem;
 
 /**
  * Created by ogl on 19/07/16.

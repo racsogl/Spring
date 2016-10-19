@@ -1,10 +1,10 @@
-package com.ogl.spring.two.config;
+package com.ogl.spring.conexionbean.config;
 
-import com.ogl.spring.two.compacts.BlankDisc;
-import com.ogl.spring.two.compacts.SgtPeppers;
-import com.ogl.spring.two.players.CDPlayer;
-import com.ogl.spring.two.soundsystem.CompactDisc;
-import com.ogl.spring.two.soundsystem.MediaPlayer;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.compacts.BlankDisc;
+import com.ogl.spring.conexionbean.compacts.SgtPeppers;
+import com.ogl.spring.conexionbean.players.CDPlayer;
+import com.ogl.spring.conexionbean.soundsystem.MediaPlayer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

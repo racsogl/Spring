@@ -19,44 +19,44 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-    <bean id="compactDisc" class="com.ogl.spring.two.compacts.SgtPeppers"/>
+    <bean id="compactDisc" class="com.ogl.spring.conexionbean.compacts.SgtPeppers"/>
 
     <!--Inicializar un bean con inyecciones de constructor-->
-    <bean class="com.ogl.spring.two.players.CDPlayer" id="cdPlayer">
+    <bean class="com.ogl.spring.conexionbean.players.CDPlayer" id="cdPlayer">
         <constructor-arg ref="compactDisc"/> <!-- + detallado con constructor -->
     </bean>
 
     <!-- cd nombre del argumento del constructor
          -ref Inyección de una referencia de bean -->
     <!--c:cd-ref="compactDisc"-->
-    <bean class="com.ogl.spring.two.players.CDPlayer" c:cd-ref="compactDisc"/>
+    <bean class="com.ogl.spring.conexionbean.players.CDPlayer" c:cd-ref="compactDisc"/>
 
     <!--sustituimos el nombre del parametro por 0-->
-    <bean class="com.ogl.spring.two.players.CDPlayer" c:_0-ref="compactDisc"/>
+    <bean class="com.ogl.spring.conexionbean.players.CDPlayer" c:_0-ref="compactDisc"/>
 
     <!--si solo tenemos un argumento de constructor no tenemos xq poner el 0-->
     <bean class="scom.ogl.spring.chapter.two.players.CDPlayer" c:_-ref="compactDisc"/>
 
-    <bean id="blankdisc" class="com.ogl.spring.two.compacts.BlankDisc">
+    <bean id="blankdisc" class="com.ogl.spring.conexionbean.compacts.BlankDisc">
         <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
         <constructor-arg value="The Beatles"/>
     </bean>
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc"
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc"
           c:_title="Sgt. Peppers's Lonely Hearts Club Band"
           c:_artist="The Beatles"/>
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc"
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc"
           c:_0="Sgt. Peppers's Lonely Hearts Club Band"
           c:_1="The Beatles"/>
 
     <!-- si solo tuviesemos un argumento de constructor -->
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc"
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc"
           c:_="Sgt. Peppers's Lonely Hearts Club Band"/>
 
     <!-- Conectar colecciones a argumentos de constructo  el espacio de nombres c NO PUEDE!!! -->
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc">
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc">
         <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
         <constructor-arg value="The Beatles"/>
         <constructor-arg>
@@ -86,7 +86,7 @@
     </bean>
 
     <!--Lo mismo pero con Set-->
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc">
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc">
         <constructor-arg value="Sgt. Peppers's Lonely Hearts Club Band"/>
         <constructor-arg value="The Beatles"/>
         <constructor-arg>
@@ -103,15 +103,15 @@
     <!-- Configurar Propiedades -->
 
     <!-- Como regla general inyección de constructores para las dependencias básicas y la de propiedades para las opcionales -->
-    <bean id="cdPlayer" class="com.ogl.spring.two.players.CDPlayer">
+    <bean id="cdPlayer" class="com.ogl.spring.conexionbean.players.CDPlayer">
         <property name="cd" ref="compactDisc" />
     </bean>
 
     <!--p:nombrePropiedad-ref="compactDisc"-->
-    <bean id="cdPlayer" class="com.ogl.spring.two.players.CDPlayer"
+    <bean id="cdPlayer" class="com.ogl.spring.conexionbean.players.CDPlayer"
         p:cd-ref="compactDisc" />
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc">
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc">
         <property name="title" value="Sgt.. Peppers's Lonely Hearts Club Band" />
 
         <property name="tracks" >
@@ -123,7 +123,7 @@
         </property>
     </bean>
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc"
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc"
           p:title="Sgt.. Peppers's Lonely Hearts Club Band">
 
         <property name="tracks">
@@ -143,7 +143,7 @@
         <value>ffff</value>
     </util:list>
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc"
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc"
           p:title="titulo"
           p:artist="arti"
           p:tracks-ref="trackList" />
@@ -158,7 +158,7 @@
     <util:property-path/>  <!--Hace referencia a una propiedad de bean (o anidada) y la muestra com bean-->
     <util:set></util:set> <!--Crea un bean que es un java.util.Set de valores o referencias-->
 
-    <bean class="com.ogl.spring.two.compacts.BlankDisc" id="blankdisc"
+    <bean class="com.ogl.spring.conexionbean.compacts.BlankDisc" id="blankdisc"
           p:title="Sgt. Peppers's Lonely Hearts Club Band"
           p:artist="The Beatles">
         <constructor-arg>

@@ -1,7 +1,7 @@
-package com.ogl.spring.two.players;
+package com.ogl.spring.conexionbean.players;
 
-import com.ogl.spring.two.soundsystem.CompactDisc;
-import com.ogl.spring.two.soundsystem.MediaPlayer;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.soundsystem.MediaPlayer;
 import org.springframework.stereotype.Component;
 
 @Component

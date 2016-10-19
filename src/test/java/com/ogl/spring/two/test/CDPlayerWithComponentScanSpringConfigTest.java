@@ -1,8 +1,8 @@
 package com.ogl.spring.two.test;
 
-import com.ogl.spring.two.config.SpringConfig;
-import com.ogl.spring.two.soundsystem.CompactDisc;
-import com.ogl.spring.two.soundsystem.MediaPlayer;
+import com.ogl.spring.conexionbean.config.SpringConfig;
+import com.ogl.spring.conexionbean.soundsystem.CompactDisc;
+import com.ogl.spring.conexionbean.soundsystem.MediaPlayer;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
