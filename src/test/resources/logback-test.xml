@@ -1,28 +1,32 @@
-<configuration debug="false">
+<configuration debug="false" scan="false" scanPeriod="24 hours">
+    <!-- debug=true logback's internal status
+         scan=true recarga la configuracion tras la modificacion-->
 
-    <!--LogBackTest-->
-    <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" /><!-- force output logback's internal status -->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <!--<pattern>%-4relative [%thread] %-5level %logger{32} - %msg%n</pattern>-->
+            <!--%-4relative numero de milisegundos desde que arranco-->
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>spring.log</file>
+    <!--<appender name="FILE" class="ch.qos.logback.core.FileAppender">-->
+        <!--<file>spring.log</file>-->
 
-        <encoder>
-            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
-        </encoder>
-    </appender>
+        <!--<encoder>-->
+            <!--<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
     <!--<logger name="com.ogl.spring.chapter.one.service" level="INFO"/>-->
 
-    <root level="debug">
+    <root level="off">
         <!--<appender-ref ref="FILE" />-->
         <appender-ref ref="STDOUT" />
     </root>
+
 </configuration>
