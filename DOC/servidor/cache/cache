@@ -1,0 +1,116 @@
+- Almacenamiento en caché controlado por anotaciones
+- Almacenamiento en caché declarado en XML
+
+La forma más habitual es usar la abstracción de caché de Spring.
+
+Anotaciones de métodos o de clase
+
+- @Cacheable Indica que Spring debe buscar en una caché el valor devuelto por el método antes de invocarlo.
+ Si se encuentra el valor, se devuelve el valor en caché. En caso contrario, se invoca el método y el valor
+devuelto se añade a la caché
+
+- @CachePut Indica que Spring debe añadir a una caché el valor devuelto por el método. No se comprueba la caché
+antes de invocar el método y el método siempre se invoca
+
+
+@Cacheable y @CachePut comparten un conjunto de atributos
+
+value           String[]    El nombre(s) de la caché(s) a usar
+condition       String      Una expresión SpEL que, si evalúa a false, no aplica el almacenamiento den caché a la
+                            invocación del método.
+key             String      Una expresión SpEL para calcular una clave de caché personalizada.
+unless          String      Una expresión SpEl que, si evalúa a true, impide que el valor devuelto se añade a la cache
+
+- @CacheEvict Indica que Spring debe expulsar a una o varias entradas de una caché.
+
+- @Caching Una anotación de agrupación para aplicar simultáneamente múltiplos de las demás anotaciones de almacenamiento
+de caché.
+
+Personalizar la clave de caché. (key)
+
+
+- #root.args
+- #root.cache
+- #root.target
+- #root.targetClass
+- #root.method
+- #root.methodName
+
+- #result El valor devuelto de la invocación del método (no está disponible con @Cacheable)
+
+- #Argument
+
+@CachePut(value = "carCache", key="#result.id")
+Car save(Car car);
+
+-----------------------------------------
+-- ALMACENAMIENTO CONDICIONAL EN CACHE --
+-----------------------------------------
+
+@Cacheable y @CachePut ofrecen dos atributos para el almacenamiento condicional en caché:
+unless y condition   Ambos reciben una expresión SpEl.
+Si la del atributo unless evalúa a true, los datos devueltos del método en caché no se añaden a la propia caché.
+Si la del atributo condition evalúa a false se desactiva el almacenamiento en caché para ese método.
+
+La diferencia es que con unless solo se puede evitar que un objeto se añada a la caché, pero se sigue buscando
+en la caché cuando se invoca el método y si se encuentra una coincidencia se devuelve.
+
+Con condition a false se desactiva el almacenamiento en caché mientras dure la invación del método. No se busca
+en la caché, ni el valor devuelto se añade a la misma.
+
+Por ejemplo:
+No quiero añadir ningún coche rojo a la caché
+Buscar en la cache si lo encuentra lo devuelve si no lo encuentra lo busca en bd y si el que encuentra es rojo
+no lo añade a la caché.
+@Cacheable(value="carCache" unless="#result.color.contains('Red')")
+Car findOne(long id);
+
+No queremos almacenar en caché a ningún objeto cuyo ID sea inferior a 10
+@Cacheable(value="carCache" unless="#result.color.contains('Red') condition="#id >= 10")
+Car findOne(long id);
+
+Si el valor de id es < de 10 no se realizan busquedas en la caché ni el objeta Car encontrado se añade, es como
+si el método careciera de la anotación @Cacheable
+
+-----------------------------------
+-- ELIMINAR ENTRADAS DE LA CACHE --
+-----------------------------------
+
+@CacheEvict elimina una o varias entradas de la caché.
+Se puede utilizar en métodos void
+
+@CacheEvict("carCache")
+void remove(long id);
+
+Cuenta con varios atributos:
+
+value               String[]    El nombre(s) de la caché(s) a usar
+key                 String      Una expresión SpEL para calcular una clave de caché personalizada.
+condition           String      Una expresión SpEL que, si evalúa a false, no se aplica el almacenamiento
+                                del caché a la invocación del método.
+
+allEntries          boolean     Si es true, deben eliminarse todas las entradas de la caché(s) especificadas
+beforeInvocation    boolean     Si es true, se eliminan las entradas de la caché antes de invocar el método.
+                                Se es false(valor predeterminado), las entradas se eliminan tras la correcta
+                                invocación del método.
+
+Para activar en una clase de configuración @EnableCaching
+en xml
+<cache:anotation-driven/>
+
+<bean id="org.springframework.cache.concurrent.ConcurrentMapCacheManager" />
+
+
+Spring de forma predeterminada incluye 5 implementaciones de administrador de cache.
+SimpleCacheManager
+NoOpCacheManager
+ConcurrentMapCacheManager
+CompositeCacheManager
+EhCacheCacheManager
+
+Fuera del nucleo de Spring, Spring Data ofrece
+RedisCacheManager (de Spring Data Redis)
+GemfireCacheManager (de Spring Data GemFire)
+
+
+

@@ -1,0 +1,11 @@
+<ehcache>
+    <cache name="spittleCache"
+           maxEntriesLocalHeap="10000"
+           eternal="false"
+           timeToIdleSeconds="400000"
+           timeToLiveSeconds="800000">
+    </cache>
+</ehcache>
+
+
+<!-- http://www.ehcache.org/ehcache.xml -->

@@ -24,7 +24,7 @@
 
     <!--<logger name="com.ogl.spring.chapter.one.service" level="INFO"/>-->
 
-    <root level="off">
+    <root level="debug">
         <!--<appender-ref ref="FILE" />-->
         <appender-ref ref="STDOUT" />
     </root>
