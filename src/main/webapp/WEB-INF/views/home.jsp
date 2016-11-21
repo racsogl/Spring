@@ -12,5 +12,6 @@
 
     <a href="<c:url value="/spittles" />">Spittles</a> | 
     <a href="<c:url value="/spitter/register" />">Register</a>
+    <a href="<c:url value="/jqgrid" />">JQGrid</a>
   </body>
 </html>
