@@ -1,17 +1,22 @@
-package com.ogl.spring.mvc.web;
+package com.ogl.web.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.nio.charset.StandardCharsets;
+
 @Configuration
-@EnableWebMvc
-@ComponentScan("com.ogl.spring.mvc.web")
+@EnableWebMvc // Habilita Spring MVC.
+@ComponentScan("com.ogl.web.controller") // Habilita análisis de componentes
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     // Solucionador de vista
@@ -24,6 +29,24 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setExposeContextBeansAsAttributes(true);
         return resolver;
     }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("messages");
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        return messageSource;
+    }
+
+//    carga propiedades sin necesidad de reiniciar
+//    @Bean
+//    public MessageSource messageSource() {
+//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+////        messageSource.setBasename("file:///etc/mensajes/messages");  // sistema de archivos
+//        messageSource.setBasename("classpath:****");  // ruta de clases
+//        messageSource.setCacheSeconds(10);
+//        return messageSource;
+//   }
 
     // Configura procesamiento de contenido estatico
     @Override
