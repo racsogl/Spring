@@ -1,4 +1,4 @@
-package com.ogl.web.config;
+package com.ogl.spring.mvc.config;
 
 import org.springframework.context.annotation.Configuration;
 

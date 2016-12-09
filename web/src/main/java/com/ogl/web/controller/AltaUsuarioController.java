@@ -26,6 +26,7 @@ public class AltaUsuarioController {
             //return "redirect:/usuario"; si el post y el get tienen distinto path
             return "altaUsuario";
         }
-        return "";
+
+        return "redirect:/dashboard/userName";
     }
 }

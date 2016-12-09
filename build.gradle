@@ -1,20 +1,33 @@
-group 'com.ogl'
-version '1.0-SNAPSHOT'
+allprojects {
+    group 'com.ogl'
+    version '1.0-SNAPSHOT'
+    apply plugin: 'java'
+    apply plugin: 'idea'
 
-apply plugin: 'java'
+    repositories {
+        maven { url 'http://maven.springframework.org/release' }
+        mavenCentral()
+    }
 
+    dependencies {
+        compile "ch.qos.logback:logback-core:$logback"
+        compile "ch.qos.logback:logback-classic:$logback"
+        compile "org.projectlombok:lombok:1.16.10"
 
-apply plugin: 'war'
-apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+        testCompile "org.springframework:spring-test:$spring"
+    }
 
-repositories {
-    mavenCentral()
 }
+//
+//
+//apply plugin: 'war'
+//apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+
 
 dependencies {
 
-    compile "ch.qos.logback:logback-core:$logback"
-    compile "ch.qos.logback:logback-classic:$logback"
 
     compile "org.springframework:spring-context:$spring"
     compile "org.springframework:spring-context-support:$spring"
@@ -29,21 +42,21 @@ dependencies {
 
     compile "org.apache.commons:commons-lang3:$commonsLangVersion"
 
-    compile "javax.servlet:javax.servlet-api:$servletApiVersion"
-    compile "javax.servlet:jstl:$jstlVersion"
+    compile "javax.servlet:javax.servlet-api:$servletversion"
+    compile "javax.servlet:jstl:$jstlversion"
 //    compile "javax.servlet.jsp:jsp-api:$jspApiVersion"
 //    compile "javax.el:javax.el-api:$jspElVersion"
 
 
 
-    compile "org.projectlombok:lombok:1.16.10"
 
-    compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+
+
 
     compile "com.h2database:h2:$h2Version"
     compile "net.sf.ehcache:ehcache:$ehcacheVersion"
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+
 
     testCompile 'org.mockito:mockito-core:1.10.19'
     testCompile "org.springframework:spring-test:$spring"

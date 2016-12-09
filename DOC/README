@@ -1,0 +1,9 @@
+POJO: Clase java sencilla puede implementar y extender.
+JavaBean: Clase java con propiedades set y get, constructor vacio y serializable
+Bussiness Object: Es un JavaBean pero tiene operaciones como calculo del total, define una entidad de negocio
+una factura, una persona y suele estar relacionada con otras entidades.
+Value Object: Tenemos una clase persona(Bussiness Object) que se relacione con otra que puede ser BO, Direccion,
+este clase depende completamente de la clase persona pero no tiene ni tabla en la bd.
+Direccion tiene una dependencia absoluta de Persona y no tiene entidad. pero en JEE Value Object es un conjunto de datos
+de varias entidades.
+DTO: 

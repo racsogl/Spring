@@ -25,5 +25,3 @@
 
     <input type="submit" tabindex="3" value="<s:message code="enviar" />"/>
 </sf:form>
-
-<span id="userName.r">Prueba</span>

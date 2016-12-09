@@ -9,7 +9,7 @@
 
     <context:property-placeholder properties-ref="configProperties"/>
 
-    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+    <bean id="configProperties" class="org.springframework.beans.factory.com.ogl.config.PropertiesFactoryBean">
         <property name="location">
             <value>/config/three.properties</value>
         </property>

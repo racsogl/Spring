@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 
 @Configuration
 @EnableWebMvc // Habilita Spring MVC.
-@ComponentScan("com.ogl.web.controller") // Habilita análisis de componentes
+@ComponentScan({"com.ogl.web.controller", "com.ogl.web.exception"}) // Habilita análisis de componentes
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     // Solucionador de vista

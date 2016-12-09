@@ -48,7 +48,12 @@ public class AltaUsuarioControllerTest {
                 .andExpect(view().name("altaUsuario"));
     }
 
-
-//            .andExpect(view().name("owners/createOrUpdateOwnerForm"));
-
+    @Test
+    public void registrarUsuario() throws Exception {
+        mockMvc.perform(post("/usuario")
+                .param("userName", "user")
+                .param("password", "password"))
+                .andExpect(status().is3xxRedirection());
+    }
 }
+
