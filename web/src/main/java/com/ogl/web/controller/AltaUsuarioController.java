@@ -17,14 +17,14 @@ public class AltaUsuarioController {
     @GetMapping(value = "/usuario")
     public String showPageAltaUsuario(final Model model) {
         model.addAttribute("userForm", new UserForm());
-        return "altaUsuario";
+        return VIEW_USER_CREATE;
     }
 
     @PostMapping(value = "/usuario")
     public String registrarUsuario(@Valid final UserForm userForm, final BindingResult result) {
         if (result.hasErrors()) {
             //return "redirect:/usuario"; si el post y el get tienen distinto path
-            return "altaUsuario";
+            return VIEW_USER_CREATE;
         }
 
         return "redirect:/dashboard/userName";

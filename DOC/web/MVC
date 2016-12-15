@@ -12,3 +12,21 @@ Su ultima parada en la implementación de la vista a la cual entrega los datos d
 generar el resultado.
 
 
+
+
+<servlet>
+    <servlet-name>
+    <servlet-class>
+    </servlet-class>
+    <load-on-startup>
+    <multipart-config>
+        <location>/tmp/</>
+        <max-file-size>2097152</max-file-size>
+        <max-request-size>4194304</max-request-size>
+    </multipart-config>
+</servlet>
+
+
+
+</servlet>
+

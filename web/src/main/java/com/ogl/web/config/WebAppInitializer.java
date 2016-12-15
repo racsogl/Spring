@@ -2,6 +2,9 @@ package com.ogl.web.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration;
+
 /**
  * En lugar de web.xml, usamos java para configurar el DispatcherServlet.
  * <p>
@@ -42,7 +45,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new Class<?>[]{WebConfig.class};
     }
 
-
     /*
      * Identifica una o varias rutas al DispatcherServlet al que se va a asignar.
      * En este caso / para indicar que el el servlet predeterminado de la aplicación procesara todas las solicitudes.
@@ -52,7 +54,15 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-//    @Override
+    // para resolver solocitudes multiparte
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        // escribe temporalmente el archivo en
+        registration.setMultipartConfig(new MultipartConfigElement("/tmp/web/uploads/",
+                2097152, 4194304, 0));
+    }
+
+    //    @Override
 //    public void onStartup(ServletContext servletContext) throws ServletException {
 //        super.onStartup(servletContext);
 //        servletContext.setInitParameter("spring.profiles.default", "local");

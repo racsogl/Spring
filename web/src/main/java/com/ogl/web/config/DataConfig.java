@@ -1,6 +1,16 @@
 package com.ogl.web.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.PropertySources;
+import org.springframework.jndi.JndiLocatorDelegate;
+import org.springframework.jndi.JndiPropertySource;
+import org.springframework.util.FileCopyUtils;
+
+import javax.naming.NamingException;
+import javax.rmi.PortableRemoteObject;
+import java.util.Properties;
 
 /**
  * @author Oscar Gonçalves`
